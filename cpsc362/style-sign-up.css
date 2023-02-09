@@ -1,0 +1,70 @@
+body
+{
+background-color: rgb(55, 28, 28);
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+}   
+.error-user-name{
+    font-family: urw-din,sans-serif;
+    text-align: center;
+    font-weight: 1000;
+    color: black;
+    font-style: italic;
+    
+}
+#user_name{
+    position: absolute;
+    top:48%;
+    left: 63%;
+    transform: translate(-50%, -50%);
+}
+#email{
+    position: absolute;
+    top:56%;
+    left: 62%;
+    transform: translate(-50%, -50%);
+}
+.sign-up{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    color: white;
+    font-family: urw-din,sans-serif;
+}
+ 
+
+.image-sign{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-top: 50px;
+}
+input{
+    border:1px solid white;
+    border-radius:16px;
+    padding:  8px 20px;
+}
+
+a{
+    color: yellow;
+    
+}
+button{
+    font-size: 14px;
+    padding: 8px 16px;
+    width: 100px;
+    border: none;
+    border-radius: 100px;
+    background-color: rgb(122, 255, 122);
+    margin: 20px;
+}
+#info{
+    position: absolute;
+  top: 37%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
