@@ -1,0 +1,59 @@
+body
+{
+    background-color: rgb(118, 44, 44);
+    display: flex;
+flex-direction: column;
+
+}   
+
+.game, .team, .score {
+    font-style: normal;
+    color: white;
+    font-family: urw-din,sans-serif;
+    font-weight: bold;
+
+}
+.game{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+    border: 10px solid;
+    margin: 10px;
+    border-color: white;
+    background-color: grey;
+
+
+}
+.container {
+    
+    column-count: 2.5;
+    column-gap: 200px;
+  }
+  
+  .team-name{
+    font-weight: bold;
+    font-size: 28px;
+  }
+  
+  .score{
+    text-align: center;
+    font-size: 32px;
+  }
+  img{
+    width: 100px;
+  }
+  h1{
+    text-align: center;
+  }
+  #logout{
+    text-align: right;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    margin: 10px;
+  }
+ logout:hover{
+    color: grey;
+  }

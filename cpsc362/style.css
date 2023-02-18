@@ -1,7 +1,7 @@
 
 body
 {
-background-color: rgb(55, 28, 28);
+background-color: rgb(118, 44, 44);
 display: flex;
 flex-direction: column;
 flex-wrap: wrap;
@@ -14,30 +14,6 @@ img{
     margin-bottom: 100px;
 }
 
-.header{
-    padding: 16px;
-    display: flex;
-    justify-content: space-evenly;
-
-}
-ul{
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 16px;
-    
-   
-}
-li a{    
-    /* Take off link attributes*/
-    color: white;
-    font-family: urw-din,sans-serif;
-    text-decoration: none;
-}
-li a:hover{
-    color: grey;
-}
 
 .info{
     margin-top: 150px;

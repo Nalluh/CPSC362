@@ -9,6 +9,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     $user_name = $_POST['user_name'];
     $password = $_POST['password'];
     $email = $_POST['email'];
+    if($user_name == '' || $email == ''){
+        echo '<span class ="error-user-name" id= "info"> Fill in all the correct fields</span>';
+
+    }
+   else if(!preg_match('/[a-zA-Z]/', $user_name)){
+        echo '<span class ="error-user-name" id= "info"> User name not valid, please try again</span>';
+    }
+
+    else if (!preg_match('/^[^@]+@[^@]+\.[^@]+$/', $email)) {
+        echo '<span class ="error-user-name" id= "info"> Please enter valid email </span>';
+    }
+    else{
     $query = "SELECT * FROM users2 WHERE user_name = '$user_name'"; // check if user name is unique
     $result = mysqli_query($con, $query);
 if (mysqli_num_rows($result) > 0) 
@@ -35,13 +47,14 @@ echo '<span class ="error-user-name" id="email"> Email is alerady taken</span>';
     {
         echo '<span class ="error-user-name" id= "info"> Fill in all the correct fields</span>';
     }
-
+    }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="style-sign-up.css">
+    <link rel="icon" type="image/png" href="SportSelect-logos/SSShort.png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

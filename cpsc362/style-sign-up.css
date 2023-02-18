@@ -1,7 +1,7 @@
 body
 {
-background-color: rgb(55, 28, 28);
-display: flex;
+    background-color: rgb(118, 44, 44);
+    display: flex;
 flex-direction: column;
 flex-wrap: wrap;
 }   
@@ -67,4 +67,9 @@ button{
   top: 37%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.score{
+    color: white;
+    font-family: urw-din,sans-serif;
+
 }
