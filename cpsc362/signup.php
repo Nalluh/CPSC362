@@ -6,8 +6,8 @@ include("functions.php");
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
-    $user_name = $_POST['user_name'];
-    $password = $_POST['password'];
+    $user_name = trim($_POST['user_name']);
+    $password = trim($_POST['password']);
     $email = $_POST['email'];
     if($user_name == '' || $email == ''){
         echo '<span class ="error-user-name" id= "info"> Fill in all the correct fields</span>';
@@ -36,9 +36,12 @@ echo '<span class ="error-user-name" id="email"> Email is alerady taken</span>';
 
  else if(!empty($user_name) && !empty($password) && !empty($email) && !is_numeric($user_name))
     {
+        $sanitized_user_name =  mysqli_real_escape_string($con, $user_name);
+        $sanitized_password =  mysqli_real_escape_string($con, $password);
         
+          
         $user_id = random_num(20);
-        $query = "insert into users2 (user_id,user_name,password,email) values ('$user_id','$user_name','$password','$email')";
+        $query = "insert into users2 (user_id,user_name,password,email) values ('$user_id','$sanitized_user_name','$sanitized_password','$email')";
         mysqli_query($con, $query);
        header("Location: login.php");
         die;

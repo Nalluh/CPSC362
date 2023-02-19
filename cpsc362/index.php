@@ -33,9 +33,13 @@ $user_data = check_login($con);
   
    <a id ="logout" href= "logout.php"> Logout </a>
   
-  <h1>Hello, <?php echo $user_data['user_name'] ;?></h1>
+  <div class ="username-place" 
+  <h1><?php echo $user_data['user_name'] ;?></h1>
+</div>
   
-  <h1>NBA Scores</h1>
+   
+    
+    
   <?php
 $teams = array(
   "ATL", "BOS", "BKN","CHA", "CHI", "CLE","DAL","DEN","DET","GS", "HOU", "IND", "LAC", "LAL", "MEM", "MIA","MIL", "MIN", "NO", "NY",
@@ -47,20 +51,57 @@ $teams_logos = array(
  'NBA LOGOS\pelicans.png', 'NBA LOGOS\knicks.png','NBA LOGOS\thunder.png','NBA LOGOS\magic.png','NBA LOGOS\76ers.png','NBA LOGOS\suns.png','NBA LOGOS\trail-blazers.png','NBA LOGOS\kings.png',
 'NBA LOGOS\spurs.png','NBA LOGOS\raptors.png','NBA LOGOS\jazz.png','NBA LOGOS\wizards.png'
 );
+$url_games = "https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/2023-FEB-23?key=e480ff73d14d4933a9a4212b69dfca68";
+$scores_json_games = file_get_contents($url_games);
+$games = json_decode($scores_json_games, true);
+
+$dateofgame = $games[0];
+$date = substr($dateofgame['DateTime'], 0,10 );
+echo "<h1> NBA Games $date </h1>";
+
+foreach($games as $game){
+  for ($i = 0; $i < count($teams); $i++) 
+     {
+    if($game['AwayTeam'] == $teams[$i]){
+    $away_team_logo = $teams_logos[$i];
+    }
+    if($game['HomeTeam'] == $teams[$i]){
+    $home_team_logo = $teams_logos[$i];
+    
+  }
+}
+
+
+  echo "<div class='game'>";
+
+
+  echo "<img src= '$away_team_logo' alt='{$game['AwayTeam']}'>" .   "<br> <br> <br> <br>" . "<span class='team-name'>{$game['AwayTeam']}</span>";
+  echo "<br> <br> <br> <br>";
+  echo "<span class='score'>{$game['AwayTeamScore']}</span>";
+  echo "<span class='at-symbol'> @</span>";
+  echo "<span class='score'>{$game['HomeTeamScore']}</span>";
+  echo "<span class='team-name'>{$game['HomeTeam']}</span>";
+  echo "<br> <br> <br> <br>";
+ 
+  echo "<img src='$home_team_logo' alt='{$game['HomeTeam']}'>";
+  echo "<br>  ";
+  echo "</div>";
+}
+// api to get scores 
 $url = "https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/2023-FEB-15?key=e480ff73d14d4933a9a4212b69dfca68";
 
 // Send a request to the API endpoint and retrieve the scores
 $scores_json = file_get_contents($url);
 $scores = json_decode($scores_json, true);
+
+
 $html = '';
 
 
 echo '<div class="container">';
 echo '<table>';
 echo '<tr>';
-echo '<th>Game</th>';
-echo '<th>Score</th>';
-echo '</tr>';
+echo '<h1>NBA Scores</h1>';
 
 
 // Loop through the scores and display them on your website
