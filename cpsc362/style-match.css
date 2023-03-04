@@ -1,0 +1,29 @@
+input{
+    border:1px solid white;
+    border-radius:16px;
+    padding:  8px 20px;
+    size: 20px;
+}
+.submit-bar{
+    size: 5px;
+}
+.text{
+    font-size: 20px;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+.submit-button{
+    margin: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 8px 16px;
+    
+    border: none;
+    border-radius: 100px;
+    background-color: rgb(122, 255, 122);
+  
+    
+}
+.submit-button:hover{
+    color: gray;
+}

@@ -10,28 +10,35 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     $password = trim($_POST['password']);
     $email = $_POST['email'];
     if($user_name == '' || $email == ''){
-        echo '<span class ="error-user-name" id= "info"> Fill in all the correct fields</span>';
+        echo '<script>alert("Fill in all the correct fields")</script>';
+
 
     }
    else if(!preg_match('/[a-zA-Z]/', $user_name)){
-        echo '<span class ="error-user-name" id= "info"> User name not valid, please try again</span>';
+        //echo '<span class ="error-user-name" id= "info"> User name not valid, please try again</span>';
+        echo '<script>alert("User name not valid, please try again")</script>';
     }
 
     else if (!preg_match('/^[^@]+@[^@]+\.[^@]+$/', $email)) {
-        echo '<span class ="error-user-name" id= "info"> Please enter valid email </span>';
+       // echo '<span class ="error-user-name" id= "info"> Please enter valid email </span>';
+        echo '<script>alert("Please enter valid email")</script>';
     }
     else{
     $query = "SELECT * FROM users2 WHERE user_name = '$user_name'"; // check if user name is unique
     $result = mysqli_query($con, $query);
 if (mysqli_num_rows($result) > 0) 
 {
-    echo '<span class ="error-user-name"id="user_name"> Username is alerady taken</span>';
+   
+    echo '<script>alert("Username taken, please try again")</script>';
+
 }
 $query = "SELECT * FROM users2 WHERE email = '$email'";   // check if email is unique
 $result = mysqli_query($con, $query);
 if (mysqli_num_rows($result) > 0) 
 {
-echo '<span class ="error-user-name" id="email"> Email is alerady taken</span>';
+
+echo '<script>alert("Email taken, please try again")</script>';
+
 }
 
  else if(!empty($user_name) && !empty($password) && !empty($email) && !is_numeric($user_name))
@@ -39,9 +46,9 @@ echo '<span class ="error-user-name" id="email"> Email is alerady taken</span>';
         $sanitized_user_name =  mysqli_real_escape_string($con, $user_name);
         $sanitized_password =  mysqli_real_escape_string($con, $password);
         
-          
+        $user_points = 1000; 
         $user_id = random_num(20);
-        $query = "insert into users2 (user_id,user_name,password,email) values ('$user_id','$sanitized_user_name','$sanitized_password','$email')";
+        $query = "insert into users2 (user_id,user_name,password,email, Points) values ('$user_id','$sanitized_user_name','$sanitized_password','$email', '$user_points')";
         mysqli_query($con, $query);
        header("Location: login.php");
         die;
@@ -76,7 +83,7 @@ echo '<span class ="error-user-name" id="email"> Email is alerady taken</span>';
     <input type="text" name ="email">
     <h2>Password</h2>
     <input type="password" name ="password">
-    <button>Signup</button>
+    <button>Sign Up</button>
  
    <h5>Already have an account? <a href="login.php">Login</a></h5>
 </div>

@@ -46,10 +46,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 <body>
   <div class="header">
     <ul>
-      <li><a href="todo">Home</a></li>
+      <li><a href="index.php">Home</a></li>
+      <li><a href="matchpage.php">Matches</a></li>
       <li><a href="http://twitter.com">How To Play</a></li>
       <li><a href="TODO">Refund Policy</a></li>
-      <li><a href="TODO">Responsible Gambling</a></li>
+      <li><a href="RGambling.php">Responsible Gambling</a></li>
       <li><a href="TODO">Support</a></li>
     </ul>
   </div>
