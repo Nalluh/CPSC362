@@ -45,7 +45,7 @@ $user_data = check_login($con);
   <?php
 $teams = array(
   "ATL", "BOS", "BKN","CHA", "CHI", "CLE","DAL","DEN","DET","GS", "HOU", "IND", "LAC", "LAL", "MEM", "MIA","MIL", "MIN", "NO", "NY",
-  "OKC", "ORL","PHI", "PHX", "POR", "SAC", 'SA',"TOR","UTA", "WAS"
+  "OKC", "ORL","PHI", "PHO", "POR", "SAC", 'SA',"TOR","UTA", "WAS"
 );
 $teams_logos = array(
   'NBA LOGOS\hawks.png','NBA LOGOS\celtics.png','NBA LOGOS\nets.png', 'NBA LOGOS\hornets.png','NBA LOGOS\bulls.png', 'NBA LOGOS\cavaliers.png', 'NBA LOGOS\mavericks.png', 'NBA LOGOS\nuggets.png', 'NBA LOGOS\pistons.png',
@@ -54,7 +54,7 @@ $teams_logos = array(
 'NBA LOGOS\spurs.png','NBA LOGOS\raptors.png','NBA LOGOS\jazz.png','NBA LOGOS\wizards.png'
 );
 // api to get scores 
-$url = "https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/2023-MAR-4?key=e480ff73d14d4933a9a4212b69dfca68";
+$url = "https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/2023-MAR-13?key=e480ff73d14d4933a9a4212b69dfca68";
 
 // Send a request to the API endpoint and retrieve the scores
 $scores_json = file_get_contents($url);
@@ -96,7 +96,9 @@ foreach ($scores as $game) {
    
   }
   
-    
+    // TODO `  add status of game to divs  ` TODO
+    echo "<span class = 'game-status'>Status: {$game['Status']} </span>";
+
       echo "<div class='game'>";
 
       echo "<img src= '$away_team_logo' alt='{$game['AwayTeam']}'>" .   "<br> <br> <br> <br>" . "<span class='team-name'>{$game['AwayTeam']}</span>";
@@ -106,9 +108,7 @@ foreach ($scores as $game) {
       echo "<span class='score'>{$game['HomeTeamScore']}</span>";
       echo "<span class='team-name'>{$game['HomeTeam']}</span>";
       echo "<br> <br> <br> <br>";
-     
       echo "<img src='$home_team_logo' alt='{$game['HomeTeam']}'>";
-      echo "<br>  ";
       echo "</div>";
     }
   

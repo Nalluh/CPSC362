@@ -4,40 +4,45 @@ session_start();
 include("connection.php");
 include("functions.php");
 
+$userTaken;
+$emailTaken;
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $user_name = trim($_POST['user_name']);
     $password = trim($_POST['password']);
     $email = $_POST['email'];
-    if($user_name == '' || $email == ''){
-        echo '<script>alert("Fill in all the correct fields")</script>';
+    if(empty($user_name)){
+        echo '<script>window.confirm("Fill in all the correct fields")</script>';
 
+
+    }
+    if(empty($email))
+    {
+        echo '<script>window.confirm("Fill in all the correct fields")</script>';
 
     }
    else if(!preg_match('/[a-zA-Z]/', $user_name)){
         //echo '<span class ="error-user-name" id= "info"> User name not valid, please try again</span>';
-        echo '<script>alert("User name not valid, please try again")</script>';
+        echo '<script>window.confirm("User name not valid, please try again")</script>';
     }
 
     else if (!preg_match('/^[^@]+@[^@]+\.[^@]+$/', $email)) {
        // echo '<span class ="error-user-name" id= "info"> Please enter valid email </span>';
-        echo '<script>alert("Please enter valid email")</script>';
+        echo '<script>window.confirm("Please enter valid email")</script>';
     }
-    else{
-    $query = "SELECT * FROM users2 WHERE user_name = '$user_name'"; // check if user name is unique
-    $result = mysqli_query($con, $query);
-if (mysqli_num_rows($result) > 0) 
+$query = "SELECT * FROM users2 WHERE user_name = '$user_name'"; // check if user name is unique
+$result2 = mysqli_query($con, $query);
+if (mysqli_num_rows($result2) > 0) 
 {
-   
-    echo '<script>alert("Username taken, please try again")</script>';
-
+    echo '<script>window.confirm("Username taken, please try again")</script>';
+    $user_name = '0';
 }
 $query = "SELECT * FROM users2 WHERE email = '$email'";   // check if email is unique
 $result = mysqli_query($con, $query);
 if (mysqli_num_rows($result) > 0) 
 {
 
-echo '<script>alert("Email taken, please try again")</script>';
+echo '<script>window.confirm("Email taken, please try again")</script>';
 
 }
 
@@ -58,7 +63,7 @@ echo '<script>alert("Email taken, please try again")</script>';
         echo '<span class ="error-user-name" id= "info"> Fill in all the correct fields</span>';
     }
     }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -23,11 +23,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
             die;
         }
     }
-    echo '<span class="error">Incorrect Username or Password.</span>';   
+    echo '<script>window.confirm("Incorrect Username or Password")</script>';
+
  }
     else
     {
-        echo "Incorrect Username or Password";
+        echo '<script>window.confirm("Incorrect Username or Password")</script>';
+
     }
 
 }
