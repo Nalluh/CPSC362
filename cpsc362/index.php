@@ -25,8 +25,8 @@ $user_data = check_login($con);
     <ul>
       <li><a href="index.php">Home</a></li>
       <li><a href="matchpage.php">Matches</a></li>
-      <li><a href="http://twitter.com">How To Play</a></li>
-      <li><a href="TODO">Refund Policy</a></li>
+      <li><a href="place_bet.php">Entries</a></li>
+      <li><a href="userHistory.php">Wager History</a></li>
       <li><a href="RGambling.php">Responsible Gambling</a></li>
       <li><a href="TODO">Support</a></li>
     </ul>
@@ -54,7 +54,7 @@ $teams_logos = array(
 'NBA LOGOS\spurs.png','NBA LOGOS\raptors.png','NBA LOGOS\jazz.png','NBA LOGOS\wizards.png'
 );
 // api to get scores 
-$url = "https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/2023-MAR-13?key=e480ff73d14d4933a9a4212b69dfca68";
+$url = "https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/".$date."?key=e480ff73d14d4933a9a4212b69dfca68";
 
 // Send a request to the API endpoint and retrieve the scores
 $scores_json = file_get_contents($url);
@@ -63,11 +63,11 @@ $scores = json_decode($scores_json, true);
 
 $html = '';
 
-
-echo '<div class="container">';
 echo '<table>';
 echo '<tr>';
 echo '<h1>NBA Scores</h1>';
+echo '<div class="container">';
+
 
 
 // Loop through the scores and display them on your website
@@ -101,13 +101,11 @@ foreach ($scores as $game) {
 
       echo "<div class='game'>";
 
-      echo "<img src= '$away_team_logo' alt='{$game['AwayTeam']}'>" .   "<br> <br> <br> <br>" . "<span class='team-name'>{$game['AwayTeam']}</span>";
-      echo "<br> <br> <br> <br>";
+      echo "<img src= '$away_team_logo' alt='{$game['AwayTeam']}'>" .   " <br> <br>" . "<span class='team-name'>{$game['AwayTeam']}</span>";
       echo "<span class='score'>{$game['AwayTeamScore']}</span>";
-      echo "<span class='at-symbol'> @</span>";
+      echo "<span class='at-symbol'> vs</span>";
       echo "<span class='score'>{$game['HomeTeamScore']}</span>";
       echo "<span class='team-name'>{$game['HomeTeam']}</span>";
-      echo "<br> <br> <br> <br>";
       echo "<img src='$home_team_logo' alt='{$game['HomeTeam']}'>";
       echo "</div>";
     }

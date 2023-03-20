@@ -26,8 +26,8 @@ $user_data = check_login($con);
     <ul>
       <li><a href="index.php">Home</a></li>
       <li><a href="matchpage.php">Matches</a></li>
-      <li><a href="http://twitter.com">How To Play</a></li>
-      <li><a href="TODO">Refund Policy</a></li>
+      <li><a href="place_bet.php">Entries</a></li>
+      <li><a href="userHistory.php">Wager History</a></li>
       <li><a href="RGambling.php">Responsible Gambling</a></li>
       <li><a href="TODO">Support</a></li>
     </ul>

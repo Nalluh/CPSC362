@@ -27,3 +27,53 @@ input{
 .submit-button:hover{
     color: gray;
 }
+.history{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(53, 53, 53);
+    padding: 12px 8px;
+    margin: 10px 1px;
+    border: 3.5px solid;
+    border-radius: 10px;
+    border-color: none;
+}
+.mContainer,.hContainer{
+    flex-direction: column;
+    column-count: 2.5;
+    column-gap: 200px;
+    margin: 50px;
+    margin-top: 10px;
+    overflow:hidden
+}
+.history-info{
+    color: white;
+    text-align: left;
+    margin-top: -10px;
+
+}
+img{
+    width: 120px;
+}
+#hhDate, #hhAmount, #hhTeam{
+    color: #d4af37;
+    margin: 5px;
+    display: inline-block
+
+
+}
+.hHeader{
+    font-weight: bold;
+    color: white;
+    -webkit-text-stroke-width: .2px;
+            -webkit-text-stroke-color: black;
+}
+.number {
+    display: inline-block;
+    width: 320px;
+    text-align:center;
+  }
+  .number2 {
+    display: inline-block;
+    width: 331px;
+    text-align:center;
+  }

@@ -1,5 +1,5 @@
 <?php
-
+$date = gmdate('Y-M-d');
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";

@@ -53,7 +53,7 @@ echo '<script>window.confirm("Email taken, please try again")</script>';
         
         $user_points = 1000; 
         $user_id = random_num(20);
-        $query = "insert into users2 (user_id,user_name,password,email, Points) values ('$user_id','$sanitized_user_name','$sanitized_password','$email', '$user_points')";
+        $query = "insert into users2 (user_id,user_name,password,email, Points, totalWinnings) values ('$user_id','$sanitized_user_name','$sanitized_password','$email', '$user_points', '0')";
         mysqli_query($con, $query);
        header("Location: login.php");
         die;

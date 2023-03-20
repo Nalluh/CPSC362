@@ -25,8 +25,8 @@ $user_data = check_login($con);
 <ul>
   <li><a href="index.php">Home</a></li>
   <li><a href="matchpage.php">Matches</a></li>
-  <li><a href="http://twitter.com">How To Play</a></li>
-  <li><a href="TODO">Refund Policy</a></li>
+  <li><a href="place_bet.php">Entries</a></li>
+  <li><a href="userHistory.php">Wager History</a></li>
   <li><a href="RGambling.php">Responsible Gambling</a></li>
   <li><a href="TODO">Support</a></li>
 </ul>
@@ -46,6 +46,7 @@ $user_data = check_login($con);
  $teamNameflag = false;
  $validWager = true;
  $validTeam = true;
+ $validTeamGame = false;
 $teams = array(
     "ATL", "BOS", "BKN","CHA", "CHI", "CLE","DAL","DEN","DET","GS", "HOU", "IND", "LAC", "LAL", "MEM", "MIA","MIL", "MIN", "NO", "NY",
     "OKC", "ORL","PHI", "PHO", "POR", "SAC", 'SA',"TOR","UTA", "WAS"
@@ -56,14 +57,15 @@ $teams = array(
    'NBA LOGOS\pelicans.png', 'NBA LOGOS\knicks.png','NBA LOGOS\thunder.png','NBA LOGOS\magic.png','NBA LOGOS\76ers.png','NBA LOGOS\suns.png','NBA LOGOS\trail-blazers.png','NBA LOGOS\kings.png',
   'NBA LOGOS\spurs.png','NBA LOGOS\raptors.png','NBA LOGOS\jazz.png','NBA LOGOS\wizards.png'
   );
-  $url_games = "https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/2023-MAR-13?key=e480ff73d14d4933a9a4212b69dfca68";
+  $url_games = "https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/".$date."?key=e480ff73d14d4933a9a4212b69dfca68";
   $scores_json_games = file_get_contents($url_games);
   $games = json_decode($scores_json_games, true);
   
   $dateofgame = $games[0];
   $date = substr($dateofgame['DateTime'], 0,10 );
   echo "<h1> NBA Games $date </h1>";
-  
+  echo "<div class='mContainer'>";
+
   foreach($games as $game){
    
     for ($i = 0; $i < count($teams); $i++) 
@@ -96,12 +98,11 @@ $games_id = $game["GameID"];
   
       
     echo "<img src= '$away_team_logo' alt='{$game['AwayTeam']}'>" .   "<br> <br> <br> <br>" . "<span class='team-name'>{$game['AwayTeam']}</span>";
-    echo "<br> <br> <br> <br>";
     echo "<span class='score'>{$game['AwayTeamScore']}</span>";
-    echo "<span class='at-symbol'> @</span>";
+    echo "<span class='at-symbol'> vs</span>";
+    echo "{$game['GameID']}";
     echo "<span class='score'>{$game['HomeTeamScore']}</span>";
     echo "<span class='team-name'>{$game['HomeTeam']}</span>";
-    echo "<br> <br> <br> <br>";
     echo "<img src='$home_team_logo' alt='{$game['HomeTeam']}'>";
     echo "<br>  ";
     echo "</div>";
@@ -109,19 +110,22 @@ $games_id = $game["GameID"];
     echo "<form method='post' >";
     echo "<span class ='text' >Wager: <input type='text' id = 'submit-bar' name ='Wager_Amount'></span>";
     echo "<span class ='text' >    Team: <input type='text' id = 'submit-bar' name ='Team'></span>";
+    echo "<input type='hidden' name='GameID' value='{$game['GameID']}'>";
     echo "<button class ='submit-button'>Submit Wager</button>";
     echo "</form>";
     echo "</div>";
     }
-    
+
 
     // remove serve request out of for loops causing repititions
   
     
     
   }
+  echo "</div>";
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-    if(!is_numeric($_POST['Wager_Amount']) or empty($_POST['Wager_Amount'])){ // if wager is not a number yell
+    if(!is_numeric($_POST['Wager_Amount']) or empty($_POST['Wager_Amount']) or ($_POST['Wager_Amount']) < 0){ // if wager is not a number yell
       echo '<script>alert("Please enter a valid wager amount")</script>';
       $validWager = false;
     } 
@@ -130,8 +134,7 @@ $games_id = $game["GameID"];
         $validTeam = false;
     }
     for( $i = 0; $i < count($teams_playing); $i++){
-      if($teams_playing[$i] == $_POST['Team']){
-      //echo "yes ".$teams_playing[$i];           // if team entered is not apart of todays
+      if($teams_playing[$i] == $_POST['Team']){  // if team entered is not apart of todays
       $teamNameflag = true;                     // games or invalid team name throw an error
       }
       if(!$teamNameflag) {
@@ -144,22 +147,54 @@ $games_id = $game["GameID"];
       $validTeam = false;
 
     }
+    foreach ($games as $game) {
+  if ($game['GameID'] == $_POST['GameID']) { // gameID is checked to teams participating
+           $home_team = $game['HomeTeam'];
+      $away_team = $game['AwayTeam'];
+      $submitted_team = $_POST['Team']; // if team selected is not apart of gameID the
+      if ($submitted_team == $home_team || $submitted_team == $away_team) { // team selected is not apart
+          $validTeamGame= true;                                             // of this game 
+      } else {
+        $validTeamGame = false;
+      }
+      break; // exit the loop since we found the correct game
+  }
+}
+  
+    if(!$validTeamGame)
+    {
+      echo '<script>alert("Please select a valid team")</script>';
+
+    }
     // if information entered (WAGER/TEAMNAME) is valid continue/initialize
-    if(($validTeam) and ($validWager)){
+    if(($validTeam) and ($validWager) and ($validTeamGame)){
     $wager_amount = $_POST['Wager_Amount'];
     $team = $_POST['Team'];
-    echo 'I AM VALID';
+    foreach ($games as $game) { // Loop to find GameID based off team name entered
+      $awayTeam = $game['AwayTeam'];
+      $homeTeam = $game['HomeTeam'];
+      $gameDate = $game['DateTime'];
+      $gameID = $game['GameID'];
+  
+      if ($awayTeam === $team || $homeTeam === $team) {
+          echo "Game ID: {$gameID}, Date: {$gameDate}<br>";
+          break; // stop looping after finding the first game involving the team
+      }
+  }
+    echo 'I AM VALID' . $gameID;
     if($wager_amount > $user_data['Points']){ // if wager is greater than points yell
       echo '<script>alert("Insufficient Points")</script>';
     }
     if($wager_amount <= $user_data['Points']){              //if enough points take them and place wager
       $user_points = $user_data['Points']-$wager_amount;    // update DB
-
+      $currentDate = date('Y-m-d');
       echo "   ".$user_points."    " ;
       $query = "UPDATE users2 SET Points = '$user_points' WHERE user_name = '{$user_data['user_name']}'";
       mysqli_query($con, $query);
-      header("Location: matchpage.php");
+      $query2 = "INSERT INTO user_info (id,user_name,wagerPlaced, betPlaced,gameID,teamBetOn) values ('{$user_data['id']}','{$user_data['user_name']}','$wager_amount','$currentDate','$gameID','$team')";
 
+      mysqli_query($con, $query2);
+     //header("Location: matchpage.php");
     }
    
 
