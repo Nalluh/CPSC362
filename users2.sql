@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 14, 2023 at 03:59 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Host: localhost
+-- Generation Time: Mar 21, 2023 at 01:14 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,26 +33,20 @@ CREATE TABLE `users2` (
   `user_name` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `email` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `email` varchar(100) NOT NULL,
+  `Points` int(11) DEFAULT NULL,
+  `totalWinnings` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users2`
 --
 
-INSERT INTO `users2` (`id`, `user_id`, `user_name`, `password`, `date`, `email`) VALUES
-(3, 7613402600654130, 'Nalla', '1234', '2023-02-07 05:49:11', '1111'),
-(5, 78106457482318, 'Allan', '1234', '2023-02-07 05:49:13', '1111'),
-(6, 39517, 'Nalla234', '1234', '2023-02-07 05:19:53', 'allan.cor98@gmail.com'),
-(7, 3545273918, 'Nalla2412414', '1234', '2023-02-07 05:20:28', 'allan.cor98@gmail.com'),
-(8, 562334958324227765, 'Nalla123', '1234', '2023-02-07 05:21:37', '123123123123'),
-(9, 7420808576538, 'Nalla`12`12', '1234', '2023-02-07 05:53:48', 'allan1.cor98@gmail.com'),
-(10, 34305574, 'Nalla', '1234', '2023-02-07 06:21:21', 'aa'),
-(11, 5462411144267247005, 'Nalla', '1234', '2023-02-07 06:21:31', 'aaaa'),
-(12, 9217155, 'Nalla', '1234', '2023-02-07 06:22:00', 'sss'),
-(13, 402070711921172441, 'Nalla', '1234', '2023-02-14 02:58:04', '2'),
-(14, 4824604625395, 'Nalla', '1234', '2023-02-14 02:58:07', '11'),
-(15, 595080304037, 'Nalla', '1234', '2023-02-14 02:58:33', '3213123');
+INSERT INTO `users2` (`id`, `user_id`, `user_name`, `password`, `date`, `email`, `Points`, `totalWinnings`) VALUES
+(21, 83984373864, 'Allan123', '1234', '2023-03-20 20:59:24', 'a@aa.com', 700, 0),
+(58, 34670, 'Nalla', '1234', '2023-03-20 23:54:04', 'allan.cor98@gmail.com', 43366, 0),
+(60, 46168953, 'CODING', '1234', '2023-03-20 20:59:36', 'A@A.COM', 1000, 0),
+(68, 5716, 'Nalluh', '1234', '2023-03-20 21:00:40', 'a@b.com', 1000, 0);
 
 --
 -- Indexes for dumped tables
@@ -76,7 +70,7 @@ ALTER TABLE `users2`
 -- AUTO_INCREMENT for table `users2`
 --
 ALTER TABLE `users2`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
