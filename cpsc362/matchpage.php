@@ -60,7 +60,7 @@ $teams = array(
   $url_games = "https://api.sportsdata.io/v3/nba/scores/json/GamesByDate/".$date."?key=e480ff73d14d4933a9a4212b69dfca68";
   $scores_json_games = file_get_contents($url_games);
   $games = json_decode($scores_json_games, true);
-  
+  $nextDayStarted=false;
   $dateofgame = $games[0];
   $date = substr($dateofgame['DateTime'], 0,10 );
   echo "<h1> NBA Games $date </h1>";
@@ -89,9 +89,13 @@ $games_id = $game["GameID"];
     if($game['Status']== "InProgress" or $game['Status']== "Final" or $game['Status'] == "F/OT") // if match started do not allow users to place wager
         {                               // do not display the match on matchpage
           $isStarted = true;
+          //
+          //
+          // TODO IF NO GAMES ARE BEING SHOWN REDIRECT TO TOMORROWS GAMES 
+          //
+          //
+          //
         }
-       
-        
     if($isStarted ==false){ // if game status is not InProgress Display games
 
     echo "<div class='game'>";
@@ -181,7 +185,6 @@ $games_id = $game["GameID"];
           break; // stop looping after finding the first game involving the team
       }
   }
-    echo 'I AM VALID' . $gameID;
     if($wager_amount > $user_data['Points']){ // if wager is greater than points yell
       echo '<script>alert("Insufficient Points")</script>';
     }

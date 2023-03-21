@@ -38,6 +38,7 @@ input{
     border-color: none;
 }
 .mContainer,.hContainer{
+    display: flex;
     flex-direction: column;
     column-count: 2.5;
     column-gap: 200px;
@@ -54,7 +55,7 @@ input{
 img{
     width: 120px;
 }
-#hhDate, #hhAmount, #hhTeam{
+#hhDate, #hhAmount, #hhTeam, #hhWon {
     color: #d4af37;
     margin: 5px;
     display: inline-block
@@ -76,4 +77,10 @@ img{
     display: inline-block;
     width: 331px;
     text-align:center;
+  }
+  #hhResultWon{
+    color: darkgreen;
+  }
+  #hhResultLoss{
+    color: darkred;
   }

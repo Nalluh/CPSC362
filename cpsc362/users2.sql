@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 04, 2023 at 09:10 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Host: localhost
+-- Generation Time: Mar 21, 2023 at 01:14 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,16 +34,19 @@ CREATE TABLE `users2` (
   `password` varchar(100) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `email` varchar(100) NOT NULL,
-  `Points` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `Points` int(11) DEFAULT NULL,
+  `totalWinnings` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users2`
 --
 
-INSERT INTO `users2` (`id`, `user_id`, `user_name`, `password`, `date`, `email`, `Points`) VALUES
-(21, 83984373864, 'Allan123', '1234', '2023-02-23 08:52:17', 'a@aa.com', 700),
-(58, 34670, 'Nalla', '1234', '2023-03-04 07:22:13', 'allan.cor98@gmail.com', 900);
+INSERT INTO `users2` (`id`, `user_id`, `user_name`, `password`, `date`, `email`, `Points`, `totalWinnings`) VALUES
+(21, 83984373864, 'Allan123', '1234', '2023-03-20 20:59:24', 'a@aa.com', 700, 0),
+(58, 34670, 'Nalla', '1234', '2023-03-20 23:54:04', 'allan.cor98@gmail.com', 43366, 0),
+(60, 46168953, 'CODING', '1234', '2023-03-20 20:59:36', 'A@A.COM', 1000, 0),
+(68, 5716, 'Nalluh', '1234', '2023-03-20 21:00:40', 'a@b.com', 1000, 0);
 
 --
 -- Indexes for dumped tables
@@ -67,7 +70,7 @@ ALTER TABLE `users2`
 -- AUTO_INCREMENT for table `users2`
 --
 ALTER TABLE `users2`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

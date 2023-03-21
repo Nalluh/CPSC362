@@ -1,5 +1,7 @@
 <?php
-$date = gmdate('Y-M-d');
+date_default_timezone_set('America/Los_Angeles');
+$date =  date('Y-m-d');
+
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
