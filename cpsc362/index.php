@@ -67,7 +67,11 @@ echo '<table>';
 echo '<tr>';
 echo '<h1>NBA Scores</h1>';
 echo '<div class="container">';
-
+if(empty($scores))
+{
+  echo "no games";
+}
+else{
 
 
 // Loop through the scores and display them on your website
@@ -111,7 +115,7 @@ foreach ($scores as $game) {
     }
   
   
-
+  }
 ?>
 </body>
 </html>

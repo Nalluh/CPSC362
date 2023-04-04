@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 21, 2023 at 01:14 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.2.34
+-- Host: 127.0.0.1
+-- Generation Time: Mar 22, 2023 at 04:48 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,7 +36,7 @@ CREATE TABLE `users2` (
   `email` varchar(100) NOT NULL,
   `Points` int(11) DEFAULT NULL,
   `totalWinnings` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users2`
@@ -44,7 +44,7 @@ CREATE TABLE `users2` (
 
 INSERT INTO `users2` (`id`, `user_id`, `user_name`, `password`, `date`, `email`, `Points`, `totalWinnings`) VALUES
 (21, 83984373864, 'Allan123', '1234', '2023-03-20 20:59:24', 'a@aa.com', 700, 0),
-(58, 34670, 'Nalla', '1234', '2023-03-20 23:54:04', 'allan.cor98@gmail.com', 43366, 0),
+(58, 34670, 'Nalla', '1234', '2023-03-22 02:13:43', 'allan.cor98@gmail.com', 40951, 2951),
 (60, 46168953, 'CODING', '1234', '2023-03-20 20:59:36', 'A@A.COM', 1000, 0),
 (68, 5716, 'Nalluh', '1234', '2023-03-20 21:00:40', 'a@b.com', 1000, 0);
 

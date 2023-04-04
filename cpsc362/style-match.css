@@ -30,7 +30,7 @@ input{
 .history{
     display: flex;
     flex-direction: column;
-    background-color: rgb(53, 53, 53);
+    background-color: rgb(37, 33, 33);
     padding: 12px 8px;
     margin: 10px 1px;
     border: 3.5px solid;
@@ -58,15 +58,25 @@ img{
 #hhDate, #hhAmount, #hhTeam, #hhWon {
     color: #d4af37;
     margin: 5px;
-    display: inline-block
-
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 1.25rem;
+    line-height: 150%;
+    text-align: center;
+    text-shadow: 0 2px 2px #2e2b27;
 
 }
 .hHeader{
+    font-size: large;
     font-weight: bold;
     color: white;
     -webkit-text-stroke-width: .2px;
             -webkit-text-stroke-color: black;
+            font-family: sans-serif;
+            font-size: 1.25rem;
+            line-height: 150%;
+            text-align: center;
+            text-shadow: 0 2px 2px #2e2b27;
 }
 .number {
     display: inline-block;
@@ -75,8 +85,17 @@ img{
   }
   .number2 {
     display: inline-block;
-    width: 331px;
+    width: 332px;
     text-align:center;
+  }
+  #hhResultWon, #hhResultLoss{
+    font-weight: bold;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 1.25rem;
+    line-height: 150%;
+    text-align: center;
+    text-shadow: 0 2px 2px #2e2b27;
   }
   #hhResultWon{
     color: darkgreen;
@@ -84,3 +103,57 @@ img{
   #hhResultLoss{
     color: darkred;
   }
+
+ .entryContainer{
+    display: flex;
+    justify-content: center;
+    column-gap: 50px;
+    margin: 60px;
+    color: #fff;
+  font-family: sans-serif;
+  font-size: 1.25rem;
+  line-height: 150%;
+  text-align: left;
+  text-shadow: 0 2px 2px #b6701e;
+  padding: 10px;
+  }
+  .right{
+text-align: left;
+border-radius: 15px;
+height: 200px;
+width: 600px;
+padding: 10px;
+margin-left: 20px;
+  }
+  
+  .left{
+    height: 300px;
+    width: 2000px;
+    
+  }
+  .entryGames{
+    font-size: 25px;
+    height:150px;
+    width: auto;
+    padding: 10px;
+    margin: 10px;
+    text-align: start;
+    border-bottom: #fff 5px solid;
+    border-radius: 13px;
+
+  }
+  .namePlace{
+    border: solid 2px;
+    border-radius: 10px;
+    padding: 5px;
+  }
+  #entryIMG{
+float: right;  }
+.noGames{
+    font-size: 25px;
+    height:150px;
+    width: auto;
+    padding: 10px;
+    margin: 10px;
+    text-align: start;
+}

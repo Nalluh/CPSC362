@@ -88,8 +88,13 @@ while ($user_info = mysqli_fetch_assoc($result)) {
       }
         else{ // else its null print empty value
           echo "<span class='number'>{$user_info['result']}</span>";
-        }
+        }if($user_info['amountWon'] == 0 and $user_info['amountWon'] != NULL) // amountWon null means games not over
+        {
+          echo "<span class='number'id ='hhWon'>-{$user_info['wagerPlaced']}</span>";
+
+        }else{
         echo "<span class='number'id ='hhWon'>{$user_info['amountWon']}</span>";
+        }
         echo "</div>";
         echo "</div>";
     }

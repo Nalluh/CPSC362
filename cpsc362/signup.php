@@ -60,7 +60,7 @@ echo '<script>window.confirm("Email taken, please try again")</script>';
     }
     else
     {
-        echo '<span class ="error-user-name" id= "info"> Fill in all the correct fields</span>';
+        
     }
     }
 

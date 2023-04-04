@@ -46,16 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     <title>SportSelect</title>
 </head>
 <body>
-  <div class="header">
-    <ul>
-      <li><a href="index.php">Home</a></li>
-      <li><a href="matchpage.php">Matches</a></li>
-      <li><a href="http://twitter.com">How To Play</a></li>
-      <li><a href="TODO">Refund Policy</a></li>
-      <li><a href="RGambling.php">Responsible Gambling</a></li>
-      <li><a href="TODO">Support</a></li>
-    </ul>
-  </div>
+  
   <div class="image">
     <img src ="SportSelect-logos/SportSelect-logos_white2.png" alt="SportSelect">
   </div>

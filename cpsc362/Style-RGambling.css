@@ -4,10 +4,9 @@
     align-items: center;
     justify-content: space-evenly;
     padding: 20px;
-    border: 10px solid;
+    border: 3px solid;
     margin: 10px;
     border-color: white;
-    background-color: grey;
     border: radius 5px;
     position: relative;
     bottom: -20px;

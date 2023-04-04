@@ -61,11 +61,17 @@ $teams = array(
   $scores_json_games = file_get_contents($url_games);
   $games = json_decode($scores_json_games, true);
   $nextDayStarted=false;
-  $dateofgame = $games[0];
-  $date = substr($dateofgame['DateTime'], 0,10 );
+ 
+ 
+
   echo "<h1> NBA Games $date </h1>";
   echo "<div class='mContainer'>";
-
+  if(empty($games)){
+    echo "no games today";
+  }
+  else{//
+  $dateofgame = $games[0];
+  $date = substr($dateofgame['DateTime'], 0,10 );
   foreach($games as $game){
    
     for ($i = 0; $i < count($teams); $i++) 
@@ -129,11 +135,16 @@ $games_id = $game["GameID"];
   echo "</div>";
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    if(empty($_POST['Wager_Amount']) and empty($_POST['Team']))
+    {
+
+    }
+    else{
     if(!is_numeric($_POST['Wager_Amount']) or empty($_POST['Wager_Amount']) or ($_POST['Wager_Amount']) < 0){ // if wager is not a number yell
       echo '<script>alert("Please enter a valid wager amount")</script>';
       $validWager = false;
     } 
-    if(empty($_POST['Team']) or is_numeric($_POST['Team'])){ // if team entered is empty or a number yell
+    if((is_numeric($_POST['Team']))){ // if team entered is empty or a number yell
         echo '<script>alert("Please select a valid team")</script>';
         $validTeam = false;
     }
@@ -151,6 +162,7 @@ $games_id = $game["GameID"];
       $validTeam = false;
 
     }
+    }
     foreach ($games as $game) {
   if ($game['GameID'] == $_POST['GameID']) { // gameID is checked to teams participating
            $home_team = $game['HomeTeam'];
@@ -165,11 +177,7 @@ $games_id = $game["GameID"];
   }
 }
   
-    if(!$validTeamGame)
-    {
-      echo '<script>alert("Please select a valid team")</script>';
-
-    }
+    
     // if information entered (WAGER/TEAMNAME) is valid continue/initialize
     if(($validTeam) and ($validWager) and ($validTeamGame)){
     $wager_amount = $_POST['Wager_Amount'];
@@ -181,7 +189,6 @@ $games_id = $game["GameID"];
       $gameID = $game['GameID'];
   
       if ($awayTeam === $team || $homeTeam === $team) {
-          echo "Game ID: {$gameID}, Date: {$gameDate}<br>";
           break; // stop looping after finding the first game involving the team
       }
   }
@@ -197,13 +204,11 @@ $games_id = $game["GameID"];
       $query2 = "INSERT INTO user_info (id,user_name,wagerPlaced, betPlaced,gameID,teamBetOn) values ('{$user_data['id']}','{$user_data['user_name']}','$wager_amount','$currentDate','$gameID','$team')";
 
       mysqli_query($con, $query2);
-     //header("Location: matchpage.php");
+      header("matchpage.php");
     }
    
 
-  for( $i = 0; $i < count($teams_playing); $i++){
-    echo $i.$teams_playing[$i];
-    }
   }
 }
+  }//
 ?>

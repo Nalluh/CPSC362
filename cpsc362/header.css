@@ -16,8 +16,12 @@ ul{
 li a{    
     /* Take off link attributes*/
     color: white;
-    font-family: urw-din,sans-serif;
     text-decoration: none;
+    font-family: sans-serif;
+    font-size: 1.25rem;
+    line-height: 150%;
+    text-align: center;
+    text-shadow: 0 2px 2px #2e2b27;
 }
 li a:hover{
     color: grey;
